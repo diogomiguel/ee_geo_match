@@ -43,7 +43,7 @@ class Geo_match
             $this->ip_address = $this->get_ip_address();
             
             // Locate and assign to session var - If IP not valid use Geoplugin default detector.
-            $geo_locate = unserialize(file_get_contents('http://www.geoplugin.net/php.gp' . ($this->ip_address !== false ? '?ip=' . $this->ip_address : '')));
+            $geo_locate = unserialize(file_get_contents('http://www.geoplugin.net/php.gp' . ($this->validate_ip($this->ip_address) !== false ? '?ip=' . $this->ip_address : '')));
             
             $_SESSION['exp_geo_located'] = strtolower(trim($geo_locate['geoplugin_countryCode']));
 
